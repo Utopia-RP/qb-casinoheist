@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 RegisterServerEvent('qb-casinoheist:server:spawnvault')
 AddEventHandler('qb-casinoheist:server:spawnvault', function(type)
     ajvault = CreateObject(`ch_prop_ch_vaultdoor01x`, Config.VaultDoors[1].x - 0.05, Config.VaultDoors[1].y + 1, Config.VaultDoors[1].z - 2.03, true, true, true)
