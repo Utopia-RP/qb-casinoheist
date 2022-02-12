@@ -62,7 +62,7 @@ end
 CreateThread(function()
     TriggerServerEvent('qb-casinoheist:server:spawnvault')
     TriggerServerEvent('aj:sync', true)
-    --SpawnPeds()  -- Not Ready for Use
+    SpawnPeds()  -- Not Ready for Use
 end)
 
 function DrawText3Ds(x, y, z, text)
@@ -88,7 +88,7 @@ CreateThread(function()
             local pos = GetEntityCoords(ped)
             for i = 1, 3 do 
                 local dist = #(pos - vector3(Config.KeycardDoors[i].x, Config.KeycardDoors[i].y, Config.KeycardDoors[i].z))
-                if dist < 1 and not Config.KeycardDoors[i].isOpen then
+                if dist < 3 and not Config.KeycardDoors[i].isOpen then
                     DrawText3Ds(Config.KeycardDoors[i].x, Config.KeycardDoors[i].y, Config.KeycardDoors[i].z + 0.3, '[~b~E~s~] Hack')
                     if IsControlJustPressed(0, 38) then
                         TriggerEvent('security_card_02:Usesecurity_card_02')
@@ -96,7 +96,7 @@ CreateThread(function()
                 end
             end
             local dist2 = #(pos - vector3(Config.VaultBomb[1].x, Config.VaultBomb[1].y, Config.VaultBomb[1].z))
-            if dist2 < 1 and Config.VaultBomb[1].hit == false then
+            if dist2 < 1.5 and Config.VaultBomb[1].hit == false then
                 inRange = true
                 DrawText3Ds(Config.VaultBomb[1].x, Config.VaultBomb[1].y, Config.VaultBomb[1].z + 1, '[~b~E~s~] Hit')
                 if IsControlJustPressed(0, 38) then
@@ -106,7 +106,7 @@ CreateThread(function()
             end
             for i = 1, 4 do
                 local dist3 = #(pos - vector3(Config.DrillSpots[i].x, Config.DrillSpots[i].y, Config.DrillSpots[i].z))
-                if dist3 < 1 and not Busy and not Config.DrillSpots[i].hit and Config.VaultBomb[1].hit then
+                if dist3 < 1.5 and not Busy and not Config.DrillSpots[i].hit and Config.VaultBomb[1].hit then
                     inRange = true
                     DrawText3Ds(Config.DrillSpots[i].x, Config.DrillSpots[i].y, Config.DrillSpots[i].z + 0.2, '[~b~E~s~] Drill')
                     print(closestDrill)
@@ -169,7 +169,7 @@ Citizen.CreateThread(function()
             end
             for k, v in pairs(Config.KeycardDoors) do
                 dist = #(pos - vector3(Config.KeycardDoors[k]["x"], Config.KeycardDoors[k]["y"], Config.KeycardDoors[k]["z"]))
-                if dist < 1 then
+                if dist < 3 then
                     closestKeypad = k
                     inRange = true
                 end
